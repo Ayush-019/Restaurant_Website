@@ -1,0 +1,100 @@
+.dashboard {
+  margin-top: 1rem;
+  border-top: 1px solid rgb(216, 216, 216);
+  z-index: 1;
+  width: 100vw;
+  max-width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 3fr 2fr;
+  position: absolute;
+}
+
+.dashboardContainer {
+  z-index: 1;
+  border-left: 1px solid rgba(0, 0, 0, 0.13);
+  border-right: 1px solid rgba(0, 0, 0, 0.13);
+  background-color: rgb(255, 255, 255);
+  padding: 3rem 0;
+}
+
+
+
+.dashboardSummary {
+  margin: 2rem 0;
+}
+
+.dashboardSummary > div {
+  display: flex;
+  background-color: white;
+  justify-content: center;
+}
+.dashboardSummary > div > p {
+  background-color: rgb(228 168 201 / 93%);
+  color: white;
+  font: 300 1.3rem "Roboto";
+  text-align: center;
+  padding: 1.5rem;
+  width: 100%;
+  margin: 0 2rem;
+}
+.dashboardSummaryBox2 > a {
+  color: rgb(255, 255, 255);
+  font: 300 1.2rem "Roboto";
+  text-align: center;
+  background: linear-gradient(
+    to top,
+    rgb(177 220 252 / 93%),
+    rgb(84 183 255 / 93%)
+  );
+  text-decoration: none;
+  padding: 1.5rem;
+  width: 10vmax;
+  height: 10vmax;
+  margin: 2rem;
+  border-radius: 1rem;
+  display: flex;
+  align-items: flex-start;
+  text-align: left;
+  flex-direction: column;
+}
+
+.dashboardSummaryBox2 > a:first-child {
+  background: linear-gradient(to bottom, rgba(74, 247, 17, 0.93), rgba(147, 253, 115, 0.93));
+  color: rgb(255, 255, 255);
+  align-items: flex-start;
+}
+
+.dashboardSummaryBox2 > a:last-child {
+  background: linear-gradient(to top, rgba(255, 208, 152, 0.93), rgba(255, 142, 9, 0.93));
+  color: rgb(255, 255, 255);
+}
+
+.lineChart {
+  width: 80%;
+  margin: auto;
+}
+
+.doughnutChart {
+  width: 30vmax;
+  margin: auto;
+}
+
+@media screen and (max-width: 600px) {
+  .dashboard {
+    grid-template-columns: 1fr;
+  }
+
+  .dashboardContainer {
+    border-left: none;
+  }
+
+  .dashboardSummary > div > p {
+    margin: 0;
+  }
+
+  .dashboardSummaryBox2 > a {
+    padding: 0.5rem;
+    margin: 1rem;
+    font: 300 0.9rem "Roboto";
+  }
+}
