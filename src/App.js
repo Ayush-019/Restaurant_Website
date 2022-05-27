@@ -8,6 +8,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Home from "./Containers/homePage";
 import Dashboard from "./Containers/DashboardPage/dashboardpage";
 import Users from "./Components/AdminPanel/users";
+import Items from "./Components/AdminPanel/allItems/allitems"
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route exact path="/cart" element={<Cart />} />
         <Route exact path="/admin" element={<Dashboard />} />
         <Route exact path="/users" element={<Users />} />
+        <Route exact path="/items" element={<Items />} />
       </Routes>
     </Router>
   );

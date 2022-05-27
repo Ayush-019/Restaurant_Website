@@ -14,7 +14,7 @@ const Sidebar = () => {
       <Link to="/users">
         <p>Users</p>
       </Link>
-      <Link to="/updateitem">
+      <Link to="/items">
         <p>Update Any Item</p>
       </Link>
       <Link to="/additem">

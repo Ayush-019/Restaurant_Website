@@ -1,14 +1,14 @@
 import React, { Fragment, useEffect } from "react";
-// import { DataGrid } from "@material-ui/data-grid";
-import { DataGrid } from "@mui/x-data-grid";
+import { DataGrid } from "@material-ui/data-grid";
 import { useSelector, useDispatch } from "react-redux";
 import SideBar from "./Sidebar/sidebar";
 import { getAllUsers, clearErrors } from "../../Redux/Actions/uerAction";
+import styles from "./users.module.css";
 
 const AllUsers = ({ history }) => {
   const dispatch = useDispatch();
 
-  const { error, users } = useSelector((state) => state.allUsers);
+  const { error, users } = useSelector((state) => state.users);
 
   useEffect(() => {
     if (error) {
@@ -19,19 +19,19 @@ const AllUsers = ({ history }) => {
   }, [dispatch, error]);
 
   const columns = [
-    { field: "id", headerName: "User ID", minWidth: 180, flex: 0.8 },
+    { field: "id", headerName: "User ID", minWidth: 300, flex: 7},
 
     {
       field: "name",
       headerName: "Name",
       minWidth: 150,
-      flex: 0.5,
+      flex: 1,
     },
     {
       field: "MobileNo",
       headerName: "MobileNo",
       minWidth: 200,
-      flex: 1,
+      flex: 2,
     },
 
     {
@@ -57,17 +57,17 @@ const AllUsers = ({ history }) => {
 
   return (
     <Fragment>
-      <div className="dashboard">
+      <div className={styles.dashboard}>
         <SideBar />
-        <div className="productListContainer">
-          <h1 id="productListHeading">All Users List</h1>
+        <div className={styles.userListContainer}>
+          <h1 id="userListHeading">All Users List</h1>
 
           <DataGrid
             rows={rows}
             columns={columns}
             pageSize={10}
             disableSelectionOnClick
-            className="productListTable"
+            className={styles.userListTable}
             autoHeight
           />
         </div>
