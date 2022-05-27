@@ -1,72 +1,77 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./menu.module.css";
 import logo from "../../Assets/chef.png";
 import Categories from "./categories";
-// import items from "./data";
-import MenuList from "./menuCard";
+import MenuCard from "./menuCard";
+import { useSelector, useDispatch } from "react-redux";
+import { getItems } from "../../Redux/Actions/itemAction";
 
-const items = [
-  {
-    id: 1,
-    title: "buttermilk pancakes",
-    category: "breakfast",
-    price: 15.99,
-  },
-  {
-    id: 2,
-    title: "diner double",
-    category: "lunch",
-    price: 13.99,
-  },
-  {
-    id: 3,
-    title: "godzilla milkshake",
-    category: "snacks",
-    price: 6.99,
-  },
-  {
-    id: 4,
-    title: "country delight",
-    category: "breakfast",
-    price: 20.99,
-  },
-  {
-    id: 5,
-    title: "egg attack",
-    category: "lunch",
-    price: 22.99,
-  },
-  {
-    id: 6,
-    title: "oreo dream",
-    category: "snacks",
-    price: 18.99,
-  },
-  {
-    id: 7,
-    title: "bacon overflow",
-    category: "breakfast",
-    price: 8.99,
-  },
-  {
-    id: 8,
-    title: "american classic",
-    category: "lunch",
-    price: 12.99,
-  },
-  {
-    id: 9,
-    title: "quarantine buddy",
-    category: "snacks",
-    price: 16.99,
-  },
-];
+// const items = [
+//   {
+//     id: 1,
+//     title: "buttermilk pancakes",
+//     category: "breakfast",
+//     price: 15.99,
+//   },
+//   {
+//     id: 2,
+//     title: "diner double",
+//     category: "lunch",
+//     price: 13.99,
+//   },
+//   {
+//     id: 3,
+//     title: "godzilla milkshake",
+//     category: "snacks",
+//     price: 6.99,
+//   },
+//   {
+//     id: 4,
+//     title: "country delight",
+//     category: "breakfast",
+//     price: 20.99,
+//   },
+//   {
+//     id: 5,
+//     title: "egg attack",
+//     category: "lunch",
+//     price: 22.99,
+//   },
+//   {
+//     id: 6,
+//     title: "oreo dream",
+//     category: "snacks",
+//     price: 18.99,
+//   },
+//   {
+//     id: 7,
+//     title: "bacon overflow",
+//     category: "breakfast",
+//     price: 8.99,
+//   },
+//   {
+//     id: 8,
+//     title: "american classic",
+//     category: "lunch",
+//     price: 12.99,
+//   },
+//   {
+//     id: 9,
+//     title: "quarantine buddy",
+//     category: "snacks",
+//     price: 16.99,
+//   },
+// ];
 
-const allCategories = ["all", "snacks", "breakfast", "lunch"];
 const Menu = () => {
+  const { items } = useSelector((state) => state.items);
+  // console.log(items)
+  const dispatch = useDispatch();
+  const allCategories = ["all", "breakfast","lunch","dinner","snacks"];
+
+  const [menuItems, setMenuItems] = useState(items);
   const [activeCategory, setActiveCategory] = useState("");
   const [categories, setCategories] = useState(allCategories);
-  const [menuItems, setMenuItems] = useState(items);
 
   const filterItems = (category) => {
     setActiveCategory(category);
@@ -77,6 +82,10 @@ const Menu = () => {
     const newItems = items.filter((item) => item.category === category);
     setMenuItems(newItems);
   };
+
+  useEffect(() => {
+    dispatch(getItems());
+  }, [dispatch]);
 
   return (
     <div className={styles.menuWrapper}>
@@ -91,7 +100,7 @@ const Menu = () => {
           activeCategory={activeCategory}
           filterItems={filterItems}
         />
-        <MenuList items={menuItems} />
+        <MenuCard items={menuItems} />
       </section>
     </div>
   );

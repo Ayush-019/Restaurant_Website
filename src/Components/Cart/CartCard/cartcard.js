@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./cartcard.moulde.css";
+import styles from "./cartcard.module.css";
 import { Link } from "react-router-dom";
 
 const CartCard = ({ item, deleteCartItems }) => {

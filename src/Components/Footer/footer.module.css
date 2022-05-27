@@ -59,7 +59,7 @@ a:hover {
   margin-right: 4rem;
 }
 
-.Restaurant > img {
+.Restaurant  img {
   width: 8rem;
 }
 
@@ -114,7 +114,7 @@ a:hover {
     width: 30%;
   }
   .Restaurant > img {
-    width: 8rem;
+    width: 4rem;
   }
   .Restaurant > div {
     font-size: 1rem;
@@ -128,7 +128,7 @@ a:hover {
   .Support {
     font-size: 1.1rem;
   }
-  
+
   a {
     font-size: 0.8rem;
   }
@@ -137,16 +137,16 @@ a:hover {
   }
 }
 
-
 @media screen and (max-width: 700px) {
   .FooterContentLeft {
     margin-left: 0;
   }
-  .Restaurant > img {
-    width: 6rem;
+  .Restaurant  img {
+    width: 5rem;
   }
   .Restaurant > div {
     font-size: 0.9rem;
+    width: 5rem;
   }
   .svg > a > svg {
     width: 1.2rem;
@@ -166,24 +166,28 @@ a:hover {
 }
 
 @media screen and (max-width: 550px) {
+  .FooterWrapper {
+    width: 100vw;
+    overflow: hidden;
+  }
   .FooterContentLeft,
   .FooterContentMiddle,
   .FooterContentRight {
     width: 25%;
     justify-content: center;
     align-items: center;
-  } 
-    .FooterContentMiddle{
-      width: 40%;
-    }
+  }
+  .FooterContentMiddle {
+    width: 50%;
+  }
   .FooterContentLeft {
     margin-left: 0;
   }
-  .Restaurant > img {
+  .Restaurant  img {
     width: 4rem;
     margin-left: 1rem;
   }
-  .Restaurant > div {
+  .Restaurant {
     font-size: 0.5rem;
   }
   .svg > a > svg {

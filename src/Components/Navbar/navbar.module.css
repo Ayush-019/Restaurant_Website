@@ -16,6 +16,10 @@
   margin-left: -0.5rem;
 }
 
+.Name:hover{
+  cursor: pointer;
+}
+
 .Name {
   width: 8rem;
 }

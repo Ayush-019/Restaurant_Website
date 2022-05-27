@@ -1,35 +1,52 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./details.module.css";
 import bg from "../../Assets/bg.png";
 import RestauLogo from "../../Assets/Logo.svg";
 import RestauName from "../../Assets/Rise n’ Dine.svg";
 import { useDispatch, useSelector } from "react-redux";
+import { clearErrors, register } from "../../Redux/Actions/uerAction";
 
-const Details = () => {
-
+const Details = ({history}) => {
   const dispatch = useDispatch();
+
+   const { error, isRegistered} = useSelector(
+     (state) => state.user
+   );
 
   const [user, setUser] = useState({
     name: "",
     MobileNo: "",
     TableNo: "",
   });
-  const { username, MobileNo, TableNo } = user;
+  const { name, MobileNo, TableNo } = user;
 
+  const detailsDataChange = (e) => {
+    setUser({ ...user, [e.target.name]: e.target.value });
+  };
   const detailsSubmit = (e) => {
     e.preventDefault();
 
-    const myForm = new FormData();
-
-    myForm.set("name", username);
-    myForm.set("MobileNo", MobileNo);
-    myForm.set("TableNo", TableNo);
-    // dispatch(register(myForm));
+    const myForm = {
+      name: name,
+      MobileNo: MobileNo,
+      TableNo: TableNo,
+    };
+    dispatch(register(myForm));
+    history.push("/home");
+    
   };
 
-  const detailsDataChange = (e) => {
-      setUser({ ...user, [e.target.name]: e.target.value });
-  };
+    useEffect(() => {
+      if (error) {
+        dispatch(clearErrors());
+      }
+
+      if(isRegistered)
+      {
+        history.push("/home");
+      }
+    }, [dispatch, error, history,isRegistered]);
+
 
   return (
     <div className={styles.detailsWrapper}>
@@ -52,23 +69,23 @@ const Details = () => {
                 placeholder="username"
                 required
                 name="name"
-                value={username}
+                value={name}
                 onChange={detailsDataChange}
               />
             </div>
             <div className={styles.mobileNo}>
               <input
-                type="number"
+                type="text"
                 placeholder="mobileNo"
                 required
-                name="mobileNo"
+                name="MobileNo"
                 value={MobileNo}
                 onChange={detailsDataChange}
               />
             </div>
             <div className={styles.TableNo}>
               <input
-                type="number"
+                type="text"
                 placeholder="TableNo"
                 required
                 name="TableNo"

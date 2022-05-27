@@ -5,6 +5,7 @@ import CartLogo from "../../Assets/Cart.svg";
 import AdminPanel from "../../Assets/ADMIN PANEL.svg";
 import Name from "../../Assets/Rise n’ Dine.svg";
 import Location from "../../Assets/Location.svg";
+import { Link } from "react-router-dom";
 
 function navbar() {
   return (
@@ -15,11 +16,13 @@ function navbar() {
             className={styles.RestaurantLogo}
             src={RestaurantLogo}
             alt="Rise n Dine"
-          ></img>
+          />
         </div>
 
         <div className={styles.Name}>
-          <img className={styles.Name} src={Name} alt="Rise n Dine"></img>
+          <Link to="/home">
+            <img className={styles.Name} src={Name} alt="Rise n Dine"></img>
+          </Link>
         </div>
         <div className={styles.LocationWrapper}>
           <img className={styles.Location} src={Location} alt="Location"></img>
@@ -30,14 +33,14 @@ function navbar() {
 
       <div className={styles.rightContainer}>
         <div className={styles.Cart}>
-          <a href="#1">
-            <img src={CartLogo} alt="Cart"></img>
-          </a>
+            <Link to="/cart">
+              <img src={CartLogo} alt="Cart"></img>
+            </Link>
         </div>
         <div className={styles.AdminPanel}>
-          <a href="#1">
+          <Link to = "/admin">
             <img src={AdminPanel} alt="AdminPanel"></img>
-          </a>
+            </Link>
         </div>
       </div>
     </div>

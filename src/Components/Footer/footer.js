@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "./footer.module.css";
 import Restaurant from "../../Assets/Rise n’ Dine.svg";
+import { Link } from "react-router-dom";
 
 function footer() {
   return (
@@ -44,7 +45,13 @@ function footer() {
 
       <div className={styles.copyrightContent}>
         <div className={styles.Restaurant}>
-          <img src={Restaurant} alt="Restaurant"></img>
+          <Link to="/home">
+            <img
+              className={styles.Restaurant}
+              src={Restaurant}
+              alt="Restaurant"
+            ></img>
+          </Link>
           <div classname={styles.CopyrightTag}>copyright &copy; 2022</div>
         </div>
 

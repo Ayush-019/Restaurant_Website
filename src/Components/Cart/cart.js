@@ -1,17 +1,15 @@
 import React, { Fragment } from "react";
-import "./Cart.css";
-import CartItemCard from "./CartItemCard.js";
+import styles from "./cart.module.css";
+import CartCard from "./CartCard/cartcard";
 import { useSelector, useDispatch } from "react-redux";
-import { addItemsToCart, removeItemsFromCart } from "../../Actions/cartAction";
-import { Typography } from "@material-ui/core";
-import RemoveShoppingCartIcon from "@material-ui/icons/RemoveShoppingCart";
+import {
+  addItemsToCart,
+  removeItemsFromCart,
+} from "../../Redux/Actions/cartAction";
 import { Link } from "react-router-dom";
-import { useAlert } from "react-alert";
-import Metadata from "../layout/metadata";
 
 const Cart = ({ history }) => {
   const dispatch = useDispatch();
-  const alert = useAlert();
 
   const { cartItems } = useSelector((state) => state.cart);
 
@@ -37,77 +35,74 @@ const Cart = ({ history }) => {
   };
 
   const checkoutHandler = () => {
-    history.push("/login?redirect=shipping");
+    history.push("/home");
   };
 
   return (
+    // <Fragment>
+    //   {cartItems.length === 0 ? (
+    //     <div className={styles.emptyCart}>
+    //       <div>No Items in Your Cart</div>
+    //       <Link to="/home">View Food Items</Link>
+    //     </div>
+    //   ) :
+    //   (
     <Fragment>
-      {cartItems.length === 0 ? (
-        <div className="emptyCart">
-          <RemoveShoppingCartIcon />
-
-          <Typography>No Product in Your Cart</Typography>
-          <Link to="/products">View Products</Link>
+      <div className={styles.cartPage}>
+        <div className={styles.cartHeading}>
+          <h2>Cart</h2>
+          <div className={styles.underline}></div>
         </div>
-      ) : (
-        <Fragment>
-          <Metadata title="Cart" />
-          <div className="cartPage">
-            <div className="cartHeader">
-              <p>Product</p>
-              <p>Quantity</p>
-              <p>Subtotal</p>
-            </div>
+        <div className={styles.cartHeader}>
+          <p>Product</p>
+          <p>Quantity</p>
+          <p>Subtotal</p>
+        </div>
 
-            {cartItems &&
-              cartItems.map((item) => (
-                <div className="cartContainer" key={item.product}>
-                  <CartItemCard item={item} deleteCartItems={deleteCartItems} />
-                  <div className="cartInput">
-                    <button
-                      onClick={() =>
-                        decreaseQuantity(item.product, item.quantity)
-                      }
-                    >
-                      -
-                    </button>
-                    <input type="number" value={item.quantity} readOnly />
-                    <button
-                      onClick={() =>
-                        increaseQuantity(
-                          item.product,
-                          item.quantity,
-                          item.stock
-                        )
-                      }
-                    >
-                      +
-                    </button>
-                  </div>
-                  <p className="cartSubtotal">{`₹${
-                    item.price * item.quantity
-                  }`}</p>
-                </div>
-              ))}
-
-            <div className="cartGrossProfit">
-              <div></div>
-              <div className="cartGrossProfitBox">
-                <p>Gross Total</p>
-                <p>{`₹${cartItems.reduce(
-                  (acc, item) => acc + item.quantity * item.price,
-                  0
-                )}`}</p>
+        {cartItems &&
+          cartItems.map((item) => (
+            <div className={styles.cartContainer} key={item.product}>
+              <CartCard item={item} deleteCartItems={deleteCartItems} />
+              <div className={styles.cartInput}>
+                <button
+                  onClick={() => decreaseQuantity(item.product, item.quantity)}
+                >
+                  -
+                </button>
+                <input type="number" value={item.quantity} readOnly />
+                <button
+                  onClick={() =>
+                    increaseQuantity(item.product, item.quantity, item.stock)
+                  }
+                >
+                  +
+                </button>
               </div>
-              <div></div>
-              <div className="checkOutBtn">
-                <button onClick={checkoutHandler}>Check Out</button>
-              </div>
+              <p className={styles.cartSubtotal}>{`₹${
+                item.price * item.quantity
+              }`}</p>
             </div>
+          ))}
+
+        <div className={styles.cartGrossProfit}>
+          <div></div>
+          <div className={styles.cartGrossProfitBox}>
+            <p>Gross Total</p>
+            <p>{`₹${cartItems.reduce(
+              (acc, item) => acc + item.quantity * item.price,
+              0
+            )}`}</p>
           </div>
-        </Fragment>
-      )}
+          <div></div>
+          <div className={styles.checkOutBtn}>
+            <button onClick={checkoutHandler}>Check Out</button>
+          </div>
+        </div>
+      </div>
     </Fragment>
+    //   )
+    // }
+    // </Fragment>
   );
 };
 
