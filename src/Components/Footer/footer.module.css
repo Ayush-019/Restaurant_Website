@@ -1,0 +1,207 @@
+.FooterWrapper {
+  background-color: #f1f1f1;
+  width: 100%;
+  height: 18rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.FooterContentLeft,
+.FooterContentMiddle,
+.FooterContentRight {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  width: 16%;
+  justify-content: center;
+  align-items: center;
+}
+
+.FooterContentLeft {
+  margin-left: 2.5rem;
+}
+a {
+  color: #000;
+  text-decoration: none;
+  line-height: 1.5rem;
+}
+
+a:hover {
+  color: #4d4d4d;
+}
+
+.Links,
+.Legal,
+.Support {
+  font-weight: 800;
+  font-size: 1.3rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #303030;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  margin-bottom: 1rem;
+}
+
+.contact {
+  margin-top: 0.25rem;
+  line-height: 1rem;
+}
+
+.copyrightContent {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  width: 40%;
+  justify-content: center;
+  align-items: flex-end;
+  margin-right: 4rem;
+}
+
+.Restaurant > img {
+  width: 8rem;
+}
+
+.Restaurant > div {
+  margin-top: 1.5rem;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 1.1rem;
+  text-transform: capitalize;
+  line-height: 27px;
+  color: #1f1f1f;
+  opacity: 0.5;
+  margin-left: 1.6rem;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.socialIcons {
+  display: flex;
+  flex-direction: row;
+}
+
+.svg > a > svg {
+  width: 1.7rem;
+  height: 1.7rem;
+  margin: 1.6rem 0.6rem;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 1000px) {
+  .FooterContentLeft,
+  .FooterContentMiddle,
+  .FooterContentRight {
+    width: 25%;
+    justify-content: center;
+    align-items: center;
+  }
+  .FooterContentLeft {
+    margin-left: 0;
+    width: 30%;
+  }
+}
+
+@media screen and (max-width: 950px) {
+  .FooterContentLeft,
+  .FooterContentMiddle,
+  .FooterContentRight {
+    width: 25%;
+    justify-content: center;
+    align-items: center;
+  }
+  .FooterContentLeft {
+    margin-left: 0;
+    width: 30%;
+  }
+  .Restaurant > img {
+    width: 8rem;
+  }
+  .Restaurant > div {
+    font-size: 1rem;
+  }
+  .svg > a > svg {
+    width: 1.4rem;
+    height: 1.4rem;
+  }
+  .Links,
+  .Legal,
+  .Support {
+    font-size: 1.1rem;
+  }
+  
+  a {
+    font-size: 0.8rem;
+  }
+  .contact {
+    font-size: 0.8rem;
+  }
+}
+
+
+@media screen and (max-width: 700px) {
+  .FooterContentLeft {
+    margin-left: 0;
+  }
+  .Restaurant > img {
+    width: 6rem;
+  }
+  .Restaurant > div {
+    font-size: 0.9rem;
+  }
+  .svg > a > svg {
+    width: 1.2rem;
+    height: 1.2rem;
+  }
+  .Links,
+  .Legal,
+  .Support {
+    font-size: 1rem;
+  }
+  a {
+    font-size: 0.7rem;
+  }
+  .contact {
+    font-size: 0.7rem;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .FooterContentLeft,
+  .FooterContentMiddle,
+  .FooterContentRight {
+    width: 25%;
+    justify-content: center;
+    align-items: center;
+  } 
+    .FooterContentMiddle{
+      width: 40%;
+    }
+  .FooterContentLeft {
+    margin-left: 0;
+  }
+  .Restaurant > img {
+    width: 4rem;
+    margin-left: 1rem;
+  }
+  .Restaurant > div {
+    font-size: 0.5rem;
+  }
+  .svg > a > svg {
+    width: 0.7rem;
+    height: 0.7rem;
+  }
+  .Links,
+  .Legal,
+  .Support {
+    font-size: 0.7rem;
+  }
+  a {
+    font-size: 0.5rem;
+  }
+  .contact {
+    font-size: 0.6rem;
+  }
+  .copyrightContent {
+    margin-right: 0;
+  }
+}
