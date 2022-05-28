@@ -5,7 +5,7 @@ import Notifications from "../Notifications/notifications";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getItems } from "../../../Redux/Actions/itemAction";
-// import { allOrders } from "../../Actions/orderAction.js";
+import { allOrders } from "../../../Redux/Actions/orderAction.js";
 import { getAllUsers } from "../../../Redux/Actions/uerAction";
 
 const Dashboard = () => {
@@ -13,14 +13,14 @@ const Dashboard = () => {
 
   const { items } = useSelector((state) => state.items);
 
-//   const { orders } = useSelector((state) => state.allOrders);
+  const { orders } = useSelector((state) => state.order);
 
   const { users } = useSelector((state) => state.users);
 
 
   useEffect(() => {
     dispatch(getItems());
-    // dispatch(allOrders());
+    dispatch(allOrders());
     dispatch(getAllUsers());
   }, [dispatch]);
 
@@ -55,8 +55,7 @@ const Dashboard = () => {
               <br />
               <br />
 
-              <p>30</p>
-              {/* <p>{orders && orders.length}</p> */}
+              <p>{orders && orders.length}</p>
             </Link>
             <Link to="/users">
               <p>Total Users Registered</p>

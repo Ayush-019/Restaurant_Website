@@ -5,6 +5,7 @@ import Categories from "./categories";
 import MenuCard from "./menuCard";
 import { useSelector, useDispatch } from "react-redux";
 import { getItems } from "../../Redux/Actions/itemAction";
+import { Link } from "react-router-dom";
 
 
 const Menu = () => {
@@ -52,6 +53,12 @@ const Menu = () => {
         />
         <MenuCard items={menuItems} />
       </section>
+      <div className={styles.btns}>
+        <Link to="/cart">
+          <button>Proceed to Checkout</button>
+        </Link>
+        <button className={styles.btn2}>Call a waiter</button>
+      </div>
     </div>
   );
 };

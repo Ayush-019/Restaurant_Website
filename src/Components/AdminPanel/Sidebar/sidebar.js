@@ -44,7 +44,7 @@ const Sidebar = () => {
       <Link to="/orders">
         <p>
           <ListAltIcon />
-          Order
+          Orders
         </p>
       </Link>
     </div>

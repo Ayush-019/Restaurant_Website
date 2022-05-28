@@ -6,6 +6,7 @@ import { allUsersReducer, userReducer } from "./Redux/Reducers/userReducer";
 import thunk from "redux-thunk";
 import { cartReducer } from "./Redux/Reducers/cartReducer";
 import { itemDetailsReducer, itemReducer, itemsReducer, newItemReducer } from "./Redux/Reducers/itemReducer";
+import { allOrdersReducer, newOrderReducer } from "./Redux/Reducers/orderReducer";
 
 
 const reducer = combineReducers({
@@ -15,7 +16,9 @@ const reducer = combineReducers({
   itemDetails:itemDetailsReducer,
   item:itemReducer,
   newitem:newItemReducer,
-  users:allUsersReducer
+  users:allUsersReducer,
+  neworder:newOrderReducer,
+  order:allOrdersReducer
 
 });
 
