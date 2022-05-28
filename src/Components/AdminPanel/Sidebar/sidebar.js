@@ -3,6 +3,12 @@ import styles from "./sidebar.module.css";
 import cheflogo from "../../../Assets/Logo.svg";
 import logo from "../../../Assets/Rise n’ Dine.svg";
 import { Link } from "react-router-dom";
+import PostAddIcon from "@material-ui/icons/PostAdd";
+import AddIcon from "@material-ui/icons/Add";
+// import ImportExportIcon from "@material-ui/icons/ImportExport";
+import ListAltIcon from "@material-ui/icons/ListAlt";
+import DashboardIcon from "@material-ui/icons/Dashboard";
+import PeopleIcon from "@material-ui/icons/People";
 
 const Sidebar = () => {
   return (
@@ -11,17 +17,35 @@ const Sidebar = () => {
       <Link to="/home">
         <img src={logo} alt="Rise n Dine" />
       </Link>
+      <Link to="/admin">
+        <p>
+          <DashboardIcon />
+          Admin Panel
+        </p>
+      </Link>
       <Link to="/users">
-        <p>Users</p>
+        <p>
+          <PeopleIcon />
+          Users
+        </p>
       </Link>
       <Link to="/items">
-        <p>Update Any Item</p>
+        <p>
+          <PostAddIcon />
+          Update Any Item
+        </p>
       </Link>
       <Link to="/additem">
-        <p>Add Any Item</p>
+        <p>
+          <AddIcon />
+          Add Any Item
+        </p>
       </Link>
       <Link to="/orders">
-        <p>Order</p>
+        <p>
+          <ListAltIcon />
+          Order
+        </p>
       </Link>
     </div>
   );

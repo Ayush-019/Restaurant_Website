@@ -7,25 +7,24 @@ import {
   removeItemsFromCart,
 } from "../../Redux/Actions/cartAction";
 import { Link } from "react-router-dom";
+import {useNavigate} from 'react-router-dom'
 
-const Cart = ({ history }) => {
+const Cart = () => {
   const dispatch = useDispatch();
+const navigate  = useNavigate();
+
 
   const { cartItems } = useSelector((state) => state.cart);
 
   const increaseQuantity = (id, quantity, stock) => {
     const newQty = quantity + 1;
-    if (stock <= quantity) {
-      alert.info(`Only ${stock} items are in Stock`);
-      return;
-    }
     dispatch(addItemsToCart(id, newQty));
   };
 
   const decreaseQuantity = (id, quantity) => {
     const newQty = quantity - 1;
-    if (quantity <= 1) {
-      return;
+    if(newQty < 0){
+      newQty = 0;
     }
     dispatch(addItemsToCart(id, newQty));
   };
@@ -35,18 +34,18 @@ const Cart = ({ history }) => {
   };
 
   const checkoutHandler = () => {
-    history.push("/home");
+    navigate("/home");
   };
 
   return (
-    // <Fragment>
-    //   {cartItems.length === 0 ? (
-    //     <div className={styles.emptyCart}>
-    //       <div>No Items in Your Cart</div>
-    //       <Link to="/home">View Food Items</Link>
-    //     </div>
-    //   ) :
-    //   (
+    <Fragment>
+      {cartItems.length === 0 ? (
+        <div className={styles.emptyCart}>
+          <div>No Items in Your Cart</div>
+          <Link to="/home">View Food Items</Link>
+        </div>
+      ) :
+      (
     <Fragment>
       <div className={styles.cartPage}>
         <div className={styles.cartHeading}>
@@ -61,18 +60,18 @@ const Cart = ({ history }) => {
 
         {cartItems &&
           cartItems.map((item) => (
-            <div className={styles.cartContainer} key={item.product}>
+            <div className={styles.cartContainer} key={item.item}>
               <CartCard item={item} deleteCartItems={deleteCartItems} />
               <div className={styles.cartInput}>
                 <button
-                  onClick={() => decreaseQuantity(item.product, item.quantity)}
+                  onClick={() => decreaseQuantity(item.item, item.quantity)}
                 >
                   -
                 </button>
                 <input type="number" value={item.quantity} readOnly />
                 <button
                   onClick={() =>
-                    increaseQuantity(item.product, item.quantity, item.stock)
+                    increaseQuantity(item.item, item.quantity)
                   }
                 >
                   +
@@ -100,9 +99,9 @@ const Cart = ({ history }) => {
         </div>
       </div>
     </Fragment>
-    //   )
-    // }
-    // </Fragment>
+      )
+    }
+    </Fragment>
   );
 };
 

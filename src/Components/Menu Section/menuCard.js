@@ -4,13 +4,15 @@ import veg from "../../Assets/veg.png";
 import nonVeg from "../../Assets/nonveg.png";
 import { useSelector, useDispatch } from "react-redux";
 import { addItemsToCart } from "../../Redux/Actions/cartAction";
+import { useAlert } from "react-alert";
 
 const MenuList = ({ items }) => {
   const dispatch = useDispatch();
+    const alert = useAlert();
 
   const addToCartHandler = (_id) => {
+    alert.success("Item Added To Cart!");
     dispatch(addItemsToCart(_id, 1));
-    // alert.success("Item Added To Cart!");
   };
 
   return (
@@ -30,7 +32,7 @@ const MenuList = ({ items }) => {
               <div className={styles.itemInfo}>
                 <div>
                   <h4>{name}</h4>
-                  {itemType == "veg" ? (
+                  {itemType === "veg" ? (
                     <div className={styles.type}>
                       <div>
                         <img src={veg} alt="veg" />
@@ -48,7 +50,7 @@ const MenuList = ({ items }) => {
                   <h4 className={styles.price}>Price : {price}₹</h4>
                 </div>
                 <div className={styles.cartbtn}>
-                  <button onClick={addToCartHandler(_id)}>Add to Cart</button>
+                  <button onClick={() => addToCartHandler(_id)}>Add to Cart</button>
                 </div>
               </div>
             </article>

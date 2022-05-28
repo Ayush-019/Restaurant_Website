@@ -9,14 +9,15 @@ export const addItemsToCart = (id, quantity) => async (dispatch, getState) => {
   const { data } = await axios.get(
     `http://localhost:7000/api/r1/getitem/${id}`
   );
-
+// console.log(data);
   dispatch({
     type: ADD_TO_CART,
     payload: {
-      item: data.item._id,
-      name: data.item.name,
-      image: data.item.images[0].url,
+      item: data.Item._id,
+      name: data.Item.name,
+      image: data.Item.images[0].url,
       quantity,
+      price : data.Item.price,
     },
   });
   localStorage.setItem("cartItems", JSON.stringify(getState().cart.cartItems));
