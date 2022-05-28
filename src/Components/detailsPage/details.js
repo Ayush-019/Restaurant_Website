@@ -5,13 +5,16 @@ import RestauLogo from "../../Assets/Logo.svg";
 import RestauName from "../../Assets/Rise n’ Dine.svg";
 import { useDispatch, useSelector } from "react-redux";
 import { clearErrors, register } from "../../Redux/Actions/uerAction";
+import { useAlert } from "react-alert";
+import {useNavigate} from 'react-router-dom';
 
-const Details = ({history}) => {
+
+const Details = () => {
   const dispatch = useDispatch();
+  const alert = useAlert();
+  const navigate = useNavigate();
 
-   const { error, isRegistered} = useSelector(
-     (state) => state.user
-   );
+  const { error, isRegistered } = useSelector((state) => state.user);
 
   const [user, setUser] = useState({
     name: "",
@@ -32,21 +35,18 @@ const Details = ({history}) => {
       TableNo: TableNo,
     };
     dispatch(register(myForm));
-    history.push("/home");
-    
   };
 
-    useEffect(() => {
-      if (error) {
-        dispatch(clearErrors());
-      }
+  useEffect(() => {
+    if (error) {
+      alert.error(error);
+      dispatch(clearErrors());
+    }
 
-      if(isRegistered)
-      {
-        history.push("/home");
-      }
-    }, [dispatch, error, history,isRegistered]);
-
+    if (isRegistered) {
+      navigate("/home");
+    }
+  }, [dispatch, error, alert, navigate, isRegistered]);
 
   return (
     <div className={styles.detailsWrapper}>
