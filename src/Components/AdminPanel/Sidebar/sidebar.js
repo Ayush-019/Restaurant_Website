@@ -13,40 +13,45 @@ import PeopleIcon from "@material-ui/icons/People";
 const Sidebar = () => {
   return (
     <div className={styles.sidebar}>
-      <img src={cheflogo} alt="Rise n Dine" />
-      <Link to="/home">
-        <img src={logo} alt="Rise n Dine" />
-      </Link>
-      <Link to="/admin">
-        <p>
-          <DashboardIcon />
-          Admin Panel
-        </p>
-      </Link>
-      <Link to="/users">
-        <p>
-          <PeopleIcon />
-          Users
-        </p>
-      </Link>
-      <Link to="/items">
-        <p>
-          <PostAddIcon />
-          Update Any Item
-        </p>
-      </Link>
-      <Link to="/additem">
-        <p>
-          <AddIcon />
-          Add Any Item
-        </p>
-      </Link>
-      <Link to="/orders">
-        <p>
-          <ListAltIcon />
-          Orders
-        </p>
-      </Link>
+      <div className={styles.sidebar1}>
+        <img src={cheflogo} alt="Rise n Dine" />
+        <Link to="/home">
+          <img className={styles.logo1}  src={logo} alt="Rise n Dine" />
+        </Link>
+      </div>
+      <div className={styles.sidebar2}>
+        <Link to="/admin">
+          <p>
+            <DashboardIcon />
+            Admin Panel
+          </p>
+        </Link>
+
+        <Link to="/users">
+          <p>
+            <PeopleIcon />
+            Users
+          </p>
+        </Link>
+        <Link to="/items">
+          <p>
+            <PostAddIcon />
+            Update Any Item
+          </p>
+        </Link>
+        <Link to="/additem">
+          <p>
+            <AddIcon />
+            Add Any Item
+          </p>
+        </Link>
+        <Link to="/orders">
+          <p>
+            <ListAltIcon />
+            Orders
+          </p>
+        </Link>
+      </div>
     </div>
   );
 };

@@ -13,20 +13,23 @@ import SpellcheckIcon from "@material-ui/icons/Spellcheck";
 import AttachMoneyIcon from "@material-ui/icons/AttachMoney";
 import SideBar from "../Sidebar/sidebar";
 import { UPDATE_ITEM_RESET } from "../../../Redux/Constants/itemConstant";
-import { useNavigate } from "react-router-dom";
+import { useNavigate,useParams, Navigate } from "react-router-dom";
+import styles from "../NewItem/newItem.module.css";
 
-const UpdateItem = ({ history, match }) => {
+
+const UpdateItem = () => {
   const dispatch = useDispatch();
   const alert = useAlert();
   const navigate = useNavigate();
+  const params = useParams();
 
-//   const { error, item } = useSelector((state) => state.getItemDetails);
+  // const { error, item } = useSelector((state) => state.getItemDetails);
 
-//   const {
-//     loading,
-//     error: updateError,
-//     isUpdated,
-//   } = useSelector((state) => state.item);
+  // const {
+  //   loading,
+  //   error: updateError,
+  //   isUpdated,
+  // } = useSelector((state) => state.item);
 
   const [name, setName] = useState("");
   const [price, setPrice] = useState(0);
@@ -38,44 +41,44 @@ const UpdateItem = ({ history, match }) => {
   const categories = ["breakfast", "lunch", "dinner", "snacks"];
   const type = ["veg", "nonveg"];
 
-  const itemId = match.params.id;
+  const itemId = params.id;
 
-//   useEffect(() => {
-//     if (error) {
-//       alert.error(error);
-//       dispatch(clearErrors());
-//     }
+  useEffect(() => {
+    // if (error) {
+    //   alert.error(error);
+    //   dispatch(clearErrors());
+    // }
 
-//     if (updateError) {
-//       alert.error(updateError);
-//       dispatch(clearErrors());
-//     }
+    // if (updateError) {
+    //   alert.error(updateError);
+    //   dispatch(clearErrors());
+    // }
 
-//     if (item && item._id !== itemId) {
-//       dispatch(getItemDetails(itemId));
-//     } else {
-//       setName(item.name);
-//       setPrice(item.price);
-//       setCategory(item.category);
-//       setType(item.Type);
-//       setOldImages(item.images);
-//     }
+    // if (item && item._id !== itemId) {
+    //   dispatch(getItemDetails(itemId));
+    // } else {
+    //   setName(item.name);
+    //   setPrice(item.price);
+    //   setCategory(item.category);
+    //   setType(item.Type);
+    //   setOldImages(item.images);
+    // }
 
-//     if (isUpdated) {
-//       alert.success("Product Updated Successfully!");
-//       navigate("/admin/products");
-//       dispatch({ type: UPDATE_ITEM_RESET });
-//     }
-//   }, [
-//     dispatch,
-//     alert,
-//     error,
-//     isUpdated,
-//     itemId,
-//     item,
-//     updateError,
-//     navigate,
-//   ]);
+    // if (isUpdated) {
+    //   alert.success("Item Updated Successfully!");
+    //   navigate("/items");
+    //   dispatch({ type: UPDATE_ITEM_RESET });
+    // }
+  }, [
+    dispatch,
+    // alert,
+    // error,
+    // isUpdated,
+    // itemId,
+    // item,
+    // updateError,
+    navigate,
+  ]);
 
   const updateItemSubmitHandler = (e) => {
     e.preventDefault();
@@ -93,6 +96,7 @@ const UpdateItem = ({ history, match }) => {
        },
      };
     dispatch(updateItem(itemId, myForm));
+    navigate("/home");
   };
 
   const updateItemImagesChange = (e) => {
@@ -116,21 +120,21 @@ const UpdateItem = ({ history, match }) => {
 
   return (
     <Fragment>
-      <div className="dashboard">
+      <div className={styles.dashboard}>
         <SideBar />
-        <div className="newProductContainer">
+        <div className={styles.newItemContainer}>
           <form
-            className="createProductForm"
+            className={styles.createItemForm}
             encType="multipart/form-data"
             onSubmit={updateItemSubmitHandler}
           >
-            <h1>Update Product</h1>
+            <h1>Update Item</h1>
 
             <div>
               <SpellcheckIcon />
               <input
                 type="text"
-                placeholder="Product Name"
+                placeholder="Item Name"
                 required
                 value={name}
                 onChange={(e) => setName(e.target.value)}
@@ -174,7 +178,7 @@ const UpdateItem = ({ history, match }) => {
               </select>
             </div>
 
-            <div id="createProductFormFile">
+            <div id={styles.createItemFormFile}>
               <input
                 type="file"
                 name="avatar"
@@ -184,15 +188,15 @@ const UpdateItem = ({ history, match }) => {
               />
             </div>
 
-            <div id="createProductFormImage">
+            <div id={styles.createItemFormImage}>
               {oldImages &&
                 oldImages.map((image, index) => (
-                  <img key={index} src={image.url} alt="Old Product Preview" />
+                  <img key={index} src={image.url} alt="Old Item Preview" />
                 ))}
             </div>
 
             <Button
-              id="createProductBtn"
+              id={styles.createItemBtn}
               type="submit"
             >
               Update
@@ -200,7 +204,6 @@ const UpdateItem = ({ history, match }) => {
           </form>
         </div>
       </div>
-      hello
     </Fragment>
   );
 };

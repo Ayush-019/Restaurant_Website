@@ -24,43 +24,39 @@ const Dashboard = () => {
     dispatch(getAllUsers());
   }, [dispatch]);
 
-//   let totalAmount = 0;
-//   orders &&
-//     orders.forEach((item) => {
-//       totalAmount += item.totalPrice;
-//     });
+  let totalAmount = 0;
+  orders &&
+    orders.forEach((item) => {
+      totalAmount += item.totalPrice;
+    });
 
 
   return (
     <div className={styles.dashboard}>
       <Sidebar />
       <div className={styles.dashboardContainer}>
-
         <div className={styles.dashboardSummary}>
           <div>
             <p>
               Total Amount Earned so far :
-              <br /> ₹100
+              <br /> ₹ {totalAmount}
             </p>
           </div>
           <div className={styles.dashboardSummaryBox2}>
             <Link to="/items">
               <p>Total Menu Items</p>
-              <br />
-              <br />
+              <span></span>
               <p>{items && items.length}</p>
             </Link>
             <Link to="/orders">
               <p>Total Orders</p>
-              <br />
-              <br />
+              <span></span>
 
               <p>{orders && orders.length}</p>
             </Link>
             <Link to="/users">
               <p>Total Users Registered</p>
-              <br />
-              <br />
+              <span></span>
 
               <p>{users && users.length}</p>
             </Link>

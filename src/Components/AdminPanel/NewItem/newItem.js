@@ -18,7 +18,7 @@ const NewProduct = () => {
   const alert = useAlert();
   const navigate = useNavigate();
 
-  // const {  error, success } = useSelector((state) => state.newItem);
+  const newItem = useSelector((state) => state.newitem);
 
   const [name, setName] = useState("");
   const [price, setPrice] = useState(0);
@@ -30,18 +30,19 @@ const NewProduct = () => {
   const type = ["veg", "nonveg"];
 
 
-  // useEffect(() => {
-  //   if (error) {
-  //     alert.error(error);
-  //     dispatch(clearErrors());
-  //   }
+  useEffect(() => {
+    console.log(newItem)
+    if (newItem?.error) {
+      alert.error(newItem?.error);
+      dispatch(clearErrors());
+    }
 
-  //   if (success) {
-  //     alert.success("Item Created Successfully");
-  //     navigate("/admin");
-  //     dispatch({ type: NEW_ITEM_RESET });
-  //   }
-  // }, [dispatch, alert, error, navigate, success]);
+    if (newItem?.success) {
+      alert.success("Item Created Successfully");
+      navigate("/admin");
+      dispatch({ type: NEW_ITEM_RESET });
+    }
+  }, [alert, newItem]);
 
   const createItemSubmitHandler = (e) => {
     e.preventDefault();
