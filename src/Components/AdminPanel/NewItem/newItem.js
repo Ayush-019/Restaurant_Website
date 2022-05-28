@@ -24,7 +24,7 @@ const NewProduct = () => {
   const [price, setPrice] = useState(0);
   const [category, setCategory] = useState("");
   const [Type, setType] = useState(0);
-  const [images, setImages] = useState([]);
+  const [imageUrl, setImageUrl] = useState([]);
 
   const categories = ["breakfast", "lunch", "dinner", "snacks"];
   const type = ["veg", "nonveg"];
@@ -54,29 +54,12 @@ const NewProduct = () => {
       itemType:Type,
       images:{
         public_id:Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15),
-        url:images.toString()
+        url:imageUrl
       }
     };
     dispatch(createItem(myForm));
   };
 
-  const createProductImagesChange = (e) => {
-    const files = Array.from(e.target.files);
-
-    setImages([]);
-
-    files.forEach((file) => {
-      const reader = new FileReader();
-
-      reader.onload = () => {
-        if (reader.readyState === 2) {
-          setImages((old) => [...old, reader.result]);
-        }
-      };
-
-      reader.readAsDataURL(file);
-    });
-  };
 
   return (
     <Fragment>
@@ -134,12 +117,12 @@ const NewProduct = () => {
               </select>
             </div>
 
-            <div id={styles.createProductFormFile}>
+            <div>
               <input
-                type="file"
-                name="avatar"
-                accept="image/*"
-                onChange={createProductImagesChange}
+                type="text"
+                placeholder="Image Url"
+                required
+                onChange={(e) => setImageUrl(e.target.value)}
               />
             </div>
 

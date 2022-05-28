@@ -35,50 +35,15 @@ const UpdateItem = () => {
   const [price, setPrice] = useState(0);
   const [category, setCategory] = useState("");
   const [Type, setType] = useState(0);
-  const [images, setImages] = useState([]);
-  const [oldImages, setOldImages] = useState([]);
+  const [imageUrl, setImageUrl] = useState([]);
+  const [oldImageUrl, setOldImagesUrl] = useState([]);
 
   const categories = ["breakfast", "lunch", "dinner", "snacks"];
   const type = ["veg", "nonveg"];
 
   const itemId = params.id;
 
-  useEffect(() => {
-    // if (error) {
-    //   alert.error(error);
-    //   dispatch(clearErrors());
-    // }
 
-    // if (updateError) {
-    //   alert.error(updateError);
-    //   dispatch(clearErrors());
-    // }
-
-    // if (item && item._id !== itemId) {
-    //   dispatch(getItemDetails(itemId));
-    // } else {
-    //   setName(item.name);
-    //   setPrice(item.price);
-    //   setCategory(item.category);
-    //   setType(item.Type);
-    //   setOldImages(item.images);
-    // }
-
-    // if (isUpdated) {
-    //   alert.success("Item Updated Successfully!");
-    //   navigate("/items");
-    //   dispatch({ type: UPDATE_ITEM_RESET });
-    // }
-  }, [
-    dispatch,
-    // alert,
-    // error,
-    // isUpdated,
-    // itemId,
-    // item,
-    // updateError,
-    navigate,
-  ]);
 
   const updateItemSubmitHandler = (e) => {
     e.preventDefault();
@@ -92,30 +57,12 @@ const UpdateItem = () => {
          public_id:
            Math.random().toString(36).substring(2, 15) +
            Math.random().toString(36).substring(2, 15),
-         url: images.toString(),
+         url: imageUrl
        },
      };
     dispatch(updateItem(itemId, myForm));
     navigate("/home");
-  };
-
-  const updateItemImagesChange = (e) => {
-    const files = Array.from(e.target.files);
-
-    setImages([]);
-    setOldImages([]);
-
-    files.forEach((file) => {
-      const reader = new FileReader();
-
-      reader.onload = () => {
-        if (reader.readyState === 2) {
-          setImages((old) => [...old, reader.result]);
-        }
-      };
-
-      reader.readAsDataURL(file);
-    });
+    alert.success("Item Updated Successfully");
   };
 
   return (
@@ -178,27 +125,17 @@ const UpdateItem = () => {
               </select>
             </div>
 
-            <div id={styles.createItemFormFile}>
+            <div>
               <input
-                type="file"
-                name="avatar"
-                accept="image/*"
-                onChange={updateItemImagesChange}
-                multiple
+                type="text"
+                placeholder="Image Url"
+                required
+                onChange={(e) => setImageUrl(e.target.value)}
               />
             </div>
 
-            <div id={styles.createItemFormImage}>
-              {oldImages &&
-                oldImages.map((image, index) => (
-                  <img key={index} src={image.url} alt="Old Item Preview" />
-                ))}
-            </div>
 
-            <Button
-              id={styles.createItemBtn}
-              type="submit"
-            >
+            <Button id={styles.createItemBtn} type="submit">
               Update
             </Button>
           </form>
