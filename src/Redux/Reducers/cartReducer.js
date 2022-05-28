@@ -1,6 +1,7 @@
 import {
   ADD_TO_CART,
   REMOVE_CART_ITEM,
+  REMOVE_ALL_CART_ITEM,
 } from "../Constants/cartConstants";
 
 export const cartReducer = (
@@ -13,9 +14,7 @@ export const cartReducer = (
     case ADD_TO_CART:
       const item = action.payload;
 
-      const isItemExist = state.cartItems.find(
-        (i) => i.item === item.item
-      );
+      const isItemExist = state.cartItems.find((i) => i.item === item.item);
 
       if (isItemExist) {
         return {
@@ -36,6 +35,12 @@ export const cartReducer = (
         ...state,
         cartItems: state.cartItems.filter((i) => i.item !== action.payload),
       };
+
+    // case REMOVE_ALL_CART_ITEM:
+    //   return {
+    //     ...state,
+    //     cartItems: state.cartItems.length = 0,
+    //   };
 
     default:
       return state;

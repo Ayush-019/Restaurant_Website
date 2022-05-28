@@ -30,7 +30,6 @@ export const register = (userdata) => async (dispatch) => {
       isRegistered:data.isRegistered
     });
 
-    console.log(data);
   } catch (error) {
     dispatch({
       type: REGISTER_USER_FAIL,
