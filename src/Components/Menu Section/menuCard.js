@@ -20,7 +20,6 @@ const MenuList = ({ items }) => {
       {items &&
         items.map((item) => {
           const { _id, name, price, itemType } = item;
-          console.log(_id);
           return (
             <article key={_id} className={styles.menuitem}>
               <img

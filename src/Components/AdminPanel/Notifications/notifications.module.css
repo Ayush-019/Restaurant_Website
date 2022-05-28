@@ -1,0 +1,46 @@
+.Notifications {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+h1 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.Notification {
+  background-color: #eeeeee;
+  width: 90%;
+  height: 3rem;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+  padding: 1rem 0rem;
+  margin-bottom: 1rem;
+  font-family: cursive;
+  text-align: center;
+}
+
+button {
+  background-color: #78ff86;
+  color: black;
+  width: 40%;
+  border: none;
+  padding: 0.3rem 0.7rem;
+  margin: 1rem 4rem;
+}
+
+button:hover{
+  cursor: pointer;
+  background-color: #acfeb4;
+}
+
+.heading1 {
+  color: black;
+}
+
+.heading2 {
+  color: #A9A9A9;
+}

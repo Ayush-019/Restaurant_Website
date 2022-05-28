@@ -80,6 +80,7 @@
 }
 .itemInfo h4 {
   margin-bottom: 0.5rem;
+  text-transform: capitalize;
 }
 
 .veg {
@@ -184,5 +185,22 @@
 
   .btns {
     text-transform: uppercase;
+  }
+}
+ 
+@media screen and (max-width: 600px) {
+  .btns button {
+    margin: 0;
+    margin-left: 1rem;
+     width: 8rem;
+  }
+  .btns > button:last-child{
+  width: 7rem;
+}
+}
+
+@media screen and (max-width: 420px) {
+  .btncontainer {
+    flex-wrap: wrap;
   }
 }
