@@ -4,33 +4,25 @@ import Sidebar from "../Sidebar/sidebar";
 import Notifications from "../Notifications/notifications";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-// import { getProductAdmin } from "../../Actions/productAction";
+import { getItems } from "../../../Redux/Actions/itemAction";
 // import { allOrders } from "../../Actions/orderAction.js";
-// import { getAllUsers } from "../../Actions/userAction.js";
+import { getAllUsers } from "../../../Redux/Actions/uerAction";
 
 const Dashboard = () => {
   const dispatch = useDispatch();
 
-//   const { products } = useSelector((state) => state.products);
+  const { items } = useSelector((state) => state.items);
 
 //   const { orders } = useSelector((state) => state.allOrders);
 
-//   const { users } = useSelector((state) => state.allUsers);
+  const { users } = useSelector((state) => state.users);
 
-//   let outOfStock = 0;
 
-//   products &&
-//     products.forEach((item) => {
-//       if (item.Stock === 0) {
-//         outOfStock += 1;
-//       }
-//     });
-
-//   useEffect(() => {
-//     dispatch(getProductAdmin());
-//     dispatch(allOrders());
-//     dispatch(getAllUsers());
-//   }, [dispatch]);
+  useEffect(() => {
+    dispatch(getItems());
+    // dispatch(allOrders());
+    dispatch(getAllUsers());
+  }, [dispatch]);
 
 //   let totalAmount = 0;
 //   orders &&
@@ -52,13 +44,11 @@ const Dashboard = () => {
             </p>
           </div>
           <div className={styles.dashboardSummaryBox2}>
-            <Link to="/home">
+            <Link to="/items">
               <p>Total Menu Items</p>
               <br />
               <br />
-
-              <p>30</p>
-              {/* <p>{products && products.length}</p> */}
+              <p>{items && items.length}</p>
             </Link>
             <Link to="/orders">
               <p>Total Orders</p>
@@ -73,8 +63,7 @@ const Dashboard = () => {
               <br />
               <br />
 
-              <p>30</p>
-              {/* <p>{users && users.length}</p> */}
+              <p>{users && users.length}</p>
             </Link>
           </div>
         </div>

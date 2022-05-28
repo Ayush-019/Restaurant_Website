@@ -9,24 +9,30 @@ import EditIcon from "@material-ui/icons/Edit";
 import DeleteIcon from "@material-ui/icons/Delete";
 import SideBar from "../Sidebar/sidebar";
 import { DELETE_ITEM_RESET } from "../../../Redux/Constants/itemConstant";
+import "../../../index.css";
 import {
   clearErrors,
   deleteItem,
   getItemDetails,
+  getItems,
 } from "../../../Redux/Actions/itemAction";
+import { useNavigate } from "react-router-dom";
 
-const AllProducts = ({ history }) => {
+
+const AllItems = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
 
   const alert = useAlert();
 
   const { error, items } = useSelector((state) => state.items);
 
-//   const { isDeleted, error: deleteError } = useSelector((state) => state.item);
+  const { isDeleted, error: deleteError } = useSelector((state) => state.item);
 
-//   const deleteProductHandler = (id) => {
-//     dispatch(deleteItem(id));
-//   };
+  const deleteProductHandler = (id) => {
+    dispatch(deleteItem(id));
+  };
 
   useEffect(() => {
     if (error) {
@@ -34,35 +40,35 @@ const AllProducts = ({ history }) => {
       dispatch(clearErrors());
     }
 
-    // if (deleteError) {
-    //   alert.error(deleteError);
-    //   dispatch(clearErrors());
-    // }
+    if (deleteError) {
+      alert.error(deleteError);
+      dispatch(clearErrors());
+    }
 
-    // if (isDeleted) {
-    //   alert.success("Product Deleted Successfully");
-    //   history.push("/admin/dashboard");
-    //   dispatch({ type: DELETE_ITEM_RESET });
-    // }
+    if (isDeleted) {
+      alert.success("Item Deleted Successfully");
+      navigate("/admin");
+      dispatch({ type: DELETE_ITEM_RESET });
+    }
 
-    dispatch(getItemDetails());
-  }, [dispatch, alert, error, history]);
-//   [dispatch, alert, error, deleteError, history, isDeleted]);
+    dispatch(getItems());
+  }, [dispatch, alert, error, deleteError, isDeleted, navigate]);
+
 
   const columns = [
-    { field: "id", headerName: "Product ID", minWidth: 200, flex: 0.5 },
+    { field: "id", headerName: "Product ID", minWidth: 100, flex: 0.5 },
 
     {
       field: "name",
       headerName: "Name",
-      minWidth: 350,
-      flex: 1,
+      minWidth: 100,
+      flex: 0.5,
     },
     {
       field: "type",
       headerName: "type",
       type: "number",
-      minWidth: 150,
+      minWidth: 100,
       flex: 0.3,
     },
 
@@ -70,8 +76,8 @@ const AllProducts = ({ history }) => {
       field: "price",
       headerName: "Price",
       type: "number",
-      minWidth: 270,
-      flex: 0.5,
+      minWidth: 50,
+      flex: 0.4,
     },
 
     {
@@ -84,14 +90,14 @@ const AllProducts = ({ history }) => {
       renderCell: (params) => {
         return (
           <Fragment>
-            <Link to={`/getitem/${params.getValue(params.id, "id")}`}>
+            <Link to={`/updateitem/${params.getValue(params.id, "id")}`}>
               <EditIcon />
             </Link>
 
             <Button
-            //   onClick={() =>
-            //     deleteProductHandler(params.getValue(params.id, "id"))
-            //   }
+              onClick={() =>
+                deleteProductHandler(params.getValue(params.id, "id"))
+              }
             >
               <DeleteIcon />
             </Button>
@@ -107,7 +113,7 @@ const AllProducts = ({ history }) => {
     items.forEach((item) => {
       rows.push({
         id: item._id,
-        stock: item.Stock,
+        type: item.Type,
         price: item.price,
         name: item.name,
       });
@@ -118,7 +124,7 @@ const AllProducts = ({ history }) => {
       <div className={styles.dashboard}>
         <SideBar />
         <div className={styles.productListContainer}>
-          <h1 id={styles.productListHeading}>ALL PRODUCTS</h1>
+          <h1 id={styles.productListHeading}>ALL Menu Items</h1>
 
           <DataGrid
             rows={rows}
@@ -134,4 +140,4 @@ const AllProducts = ({ history }) => {
   );
 };
 
-export default AllProducts;
+export default AllItems;

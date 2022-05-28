@@ -11,3 +11,11 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.MuiDataGrid-columnHeader {
+    background-color: #7daeec !important;; 
+    padding: 1vmax !important;
+}
+.MuiDataGrid-columnHeader div {
+  color: rgb(255, 255, 255);
+}

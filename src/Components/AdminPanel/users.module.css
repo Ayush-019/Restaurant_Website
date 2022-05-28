@@ -5,7 +5,7 @@
   width: 100%;
   max-width: 100%;
   display: grid;
-  grid-template-columns: 1fr 3fr 2fr;
+  grid-template-columns: 1fr 3fr;
   position: absolute;
 }
 
@@ -53,13 +53,7 @@
 .userListTable button:hover {
   color: #5595e9;
 }
-.MuiDataGrid-columnHeader {
-    background-color: #7daeec !important;; 
-    padding: 1vmax !important;
-}
-.MuiDataGrid-columnHeader div {
-  color: rgb(255, 255, 255);
-}
+
 
 @media screen and (max-width: 600px) {
   .userListTable div {
