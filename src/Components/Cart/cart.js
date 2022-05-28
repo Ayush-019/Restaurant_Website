@@ -4,6 +4,7 @@ import CartCard from "./CartCard/cartcard";
 import { useSelector, useDispatch } from "react-redux";
 import {
   addItemsToCart,
+  removeAllItemsFromCart,
   removeItemsFromCart,
 } from "../../Redux/Actions/cartAction";
 import { Link } from "react-router-dom";
@@ -16,9 +17,9 @@ const Cart = () => {
   const navigate = useNavigate();
   const alert = useAlert();
 
-  const { user } = useSelector((state) => state.user);
   const { cartItems } = useSelector((state) => state.cart);
-  // const { error } = useSelector((state) => state.newOrder);
+  const newOrder = useSelector((state) => state.newOrder);
+  const { user } = useSelector((state) => state.user);
 
   const increaseQuantity = (id, quantity, stock) => {
     const newQty = quantity + 1;
@@ -26,7 +27,7 @@ const Cart = () => {
   };
 
   const decreaseQuantity = (id, quantity) => {
-    const newQty = quantity - 1;
+    let newQty = quantity - 1;
     if (newQty < 0) {
       newQty = 0;
     }
@@ -34,17 +35,12 @@ const Cart = () => {
   };
 
   const deleteCartItems = (id) => {
+    console.log("delete", id);
     dispatch(removeItemsFromCart(id));
   };
 
-  // console.log(user.name);
-  // console.log(user.MobileNo);
-
-  // console.log(user.TableNo);
-
   const order = {
     name: user.name,
-    MobileNo: user.MobileNo,
     TableNo: user.TableNo,
     orderItems: cartItems,
     totalPrice: cartItems.reduce(
@@ -55,16 +51,17 @@ const Cart = () => {
 
   const checkoutHandler = () => {
     dispatch(createOrder(order));
+    // dispatch(removeAllItemsFromCart());
     alert.success("Order Placed Successfully");
     navigate("/home");
   };
 
-  // useEffect(() => {
-  //   if (error) {
-  //     alert.error(error);
-  //     dispatch(clearErrors());
-  //   }
-  // }, [dispatch, error, alert]);
+  useEffect(() => {
+    if (newOrder?.error) {
+      alert.error(newOrder?.error);
+      dispatch(clearErrors());
+    }
+  }, [newOrder, alert]);
 
   return (
     <Fragment>

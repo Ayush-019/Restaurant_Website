@@ -36,7 +36,7 @@
 
 @media screen and (max-width: 600px) {
   .CartCard {
-    padding: 3vmax;
+    padding: 3vmax 0;
     height: 25vmax;
   }
   .CartCard > img {
@@ -52,10 +52,11 @@
   }
 
   .CartCard > div > span {
-    font: 300 1.9vmax "Roboto";
+    font: 300 1.5vmax "Roboto";
   }
 
   .CartCard > div > p {
-    font: 100 1.8vmax "Roboto";
+    font: 100 1.3vmax "Roboto";
+    margin-top: 2rem;
   }
 }
