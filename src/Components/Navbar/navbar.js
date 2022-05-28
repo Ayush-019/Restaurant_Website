@@ -5,9 +5,11 @@ import CartLogo from "../../Assets/Cart.svg";
 import AdminPanel from "../../Assets/ADMIN PANEL.svg";
 import Name from "../../Assets/Rise n’ Dine.svg";
 import Location from "../../Assets/Location.svg";
-import { Link } from "react-router-dom";
+import { Link,useNavigate } from "react-router-dom";
+import logout from "../../Assets/logout.png";
 
-function navbar() {
+function Navbar() {
+  const navigate = useNavigate();
   return (
     <div className={styles.navbarWrapper}>
       <div className={styles.leftContainer}>
@@ -33,18 +35,23 @@ function navbar() {
 
       <div className={styles.rightContainer}>
         <div className={styles.Cart}>
-            <Link to="/cart">
-              <img src={CartLogo} alt="Cart"></img>
-            </Link>
+          <Link to="/cart">
+            <img src={CartLogo} alt="Cart"></img>
+          </Link>
         </div>
         <div className={styles.AdminPanel}>
-          <Link to = "/admin">
+          <Link to="/admin">
             <img src={AdminPanel} alt="AdminPanel"></img>
-            </Link>
+          </Link>
+        </div>
+        <div className={styles.logout}>
+          {/* <Link to="/"> */}
+          <img src={logout} alt="logout" onClick={() => navigate("/")}></img>
+          {/* </Link> */}
         </div>
       </div>
     </div>
   );
 }
 
-export default navbar;
+export default Navbar;

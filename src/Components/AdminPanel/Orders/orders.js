@@ -13,6 +13,8 @@ const Orders = () => {
   const dispatch = useDispatch();
   const alert = useAlert();
   const { loading, error, orders } = useSelector((state) => state.order);
+  const { user } = useSelector((state) => state.user);
+
 
   const columns = [
     { field: "id", headerName: "Order ID", minWidth: 300, flex: 1 },
