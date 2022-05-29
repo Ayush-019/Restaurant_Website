@@ -18,7 +18,7 @@ export const register = (userdata) => async (dispatch) => {
     
 
     const { data } = await axios.post(
-      `http://localhost:7000/api/r1/register`,
+      `https://risendine.azurewebsites.net/api/r1/register`,
       userdata,
       config
     );
@@ -45,7 +45,7 @@ export const getAllUsers = () => async (dispatch) => {
       type: ALL_USERS_REQUEST,
     });
     const { data } = await axios.get(
-      "http://localhost:7000/api/r1/getallusers"
+      "https://risendine.azurewebsites.net/api/r1/getallusers"
     );
     dispatch({
       type: ALL_USERS_SUCCESS,

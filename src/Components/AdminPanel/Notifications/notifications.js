@@ -7,7 +7,7 @@ const Notifications = () => {
   const [tablesdata, setTablesdata] = useState([]);
 
   useEffect(() => {
-    const socket = io("http://localhost:4000");
+    const socket = io("https://socketiorisendine.azurewebsites.net/");
     console.log(socket);
 
     socket.on("connect", () => {

@@ -25,7 +25,7 @@ export const getItems = () => async (dispatch) => {
     });
 
     const { data } = await axios.get(
-      "http://localhost:7000/api/r1/getallitems"
+      "https://risendine.azurewebsites.net/api/r1/getallitems"
     );
 
     dispatch({
@@ -45,7 +45,7 @@ export const getItemDetails = (id) => async (dispatch) => {
     dispatch({ type: ITEM_DETAILS_REQUEST });
 
     const { data } = await axios.get(
-      `http://localhost:7000/api/r1/getitem/${id}`
+      `https://risendine.azurewebsites.net/api/r1/getitem/${id}`
     );
 
     dispatch({
@@ -69,7 +69,7 @@ export const createItem = (itemData) => async (dispatch) => {
     const config = { headers: { "Content-Type": "application/json" } };
 
     const { data } = await axios.post(
-      "http://localhost:7000/api/r1/createitem",
+      "https://risendine.azurewebsites.net/api/r1/createitem",
       itemData,
       config
     );
@@ -92,7 +92,7 @@ export const deleteItem = (id) => async (dispatch) => {
     });
 
     const { data } = await axios.delete(
-      `http://localhost:7000/api/r1/deleteitem/${id}`
+      `https://risendine.azurewebsites.net/api/r1/deleteitem/${id}`
     );
     dispatch({
       type: DELETE_ITEM_SUCCESS,
@@ -115,7 +115,7 @@ export const updateItem = (id, itemData) => async (dispatch) => {
     const config = { headers: { "Content-Type": "application/json" } };
 
     const { data } = await axios.put(
-      `http://localhost:7000/api/r1/updateitem/${id}`,
+      `https://risendine.azurewebsites.net/api/r1/updateitem/${id}`,
       itemData,
       config
     );

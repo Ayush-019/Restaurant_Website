@@ -17,7 +17,7 @@ export const createOrder = (order) => async (dispatch) => {
     const config = { headers: { "Content-Type": "application/json" } };
 
     const { data } = await axios.post(
-      `http://localhost:7000/api/r1/order/new`,
+      `https://risendine.azurewebsites.net/api/r1/order/new`,
       order,
       config
     );
@@ -38,7 +38,7 @@ export const allOrders = () => async (dispatch) => {
   try {
     dispatch({ type: ALL_ORDERS_REQUEST });
 
-    const { data } = await axios.get(`http://localhost:7000/api/r1/orders`);
+    const { data } = await axios.get(`https://risendine.azurewebsites.net/api/r1/orders`);
 
     dispatch({
       type: ALL_ORDERS_SUCCESS,

@@ -7,9 +7,11 @@ import { useSelector, useDispatch } from "react-redux";
 import { getItems } from "../../Redux/Actions/itemAction";
 import { Link } from "react-router-dom";
 import { io } from "socket.io-client";
+import { useAlert } from "react-alert";
 
 const Menu = () => {
   const { items } = useSelector((state) => state.items);
+  const alert = useAlert();
   // console.log(items)
   const dispatch = useDispatch();
   const allCategories = ["all", "breakfast", "lunch", "dinner", "snacks"];
@@ -31,7 +33,7 @@ const Menu = () => {
   };
 
   useEffect(() => {
-    const socket = io("http://localhost:4000");
+    const socket = io("https://socketiorisendine.azurewebsites.net/");
     console.log(socket);
 
     socket.on("connect", () => {
@@ -76,14 +78,15 @@ const Menu = () => {
         <button
           className={styles.btn2}
           onClick={() => {
-            console.log(socketConn);
 
             if (socketConn) {
-              console.log("socketConn");
+              // console.log("socketConn");
               socketConn.emit("callwaiter",user.TableNo);
             } else {
-              console.log("nhi ho rha");
+              // console.log("nhi ho rha");
             }
+
+            alert.success("Waiter's on the way");
           }}
         >
           Call a waiter

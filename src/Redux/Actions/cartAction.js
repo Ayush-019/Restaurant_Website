@@ -8,7 +8,7 @@ import {
 
 export const addItemsToCart = (id, quantity) => async (dispatch, getState) => {
   const { data } = await axios.get(
-    `http://localhost:7000/api/r1/getitem/${id}`
+    `https://risendine.azurewebsites.net/api/r1/getitem/${id}`
   );
 // console.log(data);
   dispatch({
