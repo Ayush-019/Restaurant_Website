@@ -2,7 +2,7 @@ Rise N Dine
 A small Restaurant App
 
 ## Hosted URL
-https://cryptomon-iiitm.netlify.app/
+https://risendine007.netlify.app/home
 
 ## Development Setup
 
