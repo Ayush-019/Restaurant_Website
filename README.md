@@ -2,7 +2,7 @@ Rise N Dine
 A small Restaurant App
 
 ## Hosted URL
-https://risendine007.netlify.app/home
+https://risendine007.netlify.app
 
 ## Development Setup
 
